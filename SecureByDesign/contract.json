@@ -1,0 +1,23 @@
+{
+  "description": "SecureByDesign Data Contract — DO NOT MODIFY WITHOUT TEAM AGREEMENT",
+  "version": "1.0",
+  "input_schema": {
+    "dfd_id": "string",
+    "system_name": "string",
+    "nodes": [{"id": "string", "type": "external_entity|process|datastore", "name": "string", "description": "string|null"}],
+    "edges": [{"id": "string", "from": "string", "to": "string", "data_description": "string|null", "protocol": "string|null", "authenticated": "boolean|null", "encrypted": "boolean|null"}],
+    "trust_boundaries": [{"id": "string", "name": "string", "separates": ["node_id"]}],
+    "partial_info_flags": {"missing_trust_boundaries": "boolean", "unknown_protocols": "boolean", "unspecified_auth": "boolean", "incomplete_nodes": "boolean"}
+  },
+  "output_schema": {
+    "dfd_id": "string",
+    "system_name": "string",
+    "analysis_timestamp": "ISO8601",
+    "overall_risk_level": "Critical|High|Medium|Low",
+    "partial_dfd_detected": "boolean",
+    "completeness_score": "float 0.0-1.0",
+    "threats": [{"threat_id": "string", "stride_category": "exact STRIDE name", "affected_component": "string", "threat_description": "string", "missing_control": "string", "confidence": "High|Medium|Low", "confidence_reason": "string", "explanation": "string"}],
+    "missing_controls_summary": ["string"],
+    "stride_coverage": {"Spoofing": "int", "Tampering": "int", "Repudiation": "int", "Information Disclosure": "int", "Denial of Service": "int", "Elevation of Privilege": "int"}
+  }
+}
