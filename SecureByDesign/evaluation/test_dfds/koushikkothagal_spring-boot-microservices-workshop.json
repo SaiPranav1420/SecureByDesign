@@ -1,0 +1,108 @@
+{
+  "dfd_id": "koushikkothagal_spring-boot-microservices-workshop",
+  "system_name": "Koushikkothagal Spring-Boot-Microservices-Workshop",
+  "nodes": [
+    {
+      "id": "S1",
+      "type": "process",
+      "name": "discovery_server",
+      "description": "infrastructural, service_discovery"
+    },
+    {
+      "id": "S2",
+      "type": "process",
+      "name": "ratings_data_service",
+      "description": "internal, entrypoint"
+    },
+    {
+      "id": "S3",
+      "type": "process",
+      "name": "movie_info_service",
+      "description": "internal, entrypoint"
+    },
+    {
+      "id": "S4",
+      "type": "process",
+      "name": "movie_catalog_service",
+      "description": "internal, load_balancer, entrypoint"
+    },
+    {
+      "id": "EXT1",
+      "type": "external_entity",
+      "name": "external_website",
+      "description": "external_website"
+    }
+  ],
+  "edges": [
+    {
+      "id": "F1",
+      "from": "S2",
+      "to": "S1",
+      "data_description": "ratings_data_service \u2192 discovery_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F2",
+      "from": "S3",
+      "to": "S1",
+      "data_description": "movie_info_service \u2192 discovery_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F3",
+      "from": "EXT1",
+      "to": "S3",
+      "data_description": "external_website \u2192 movie_info_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F4",
+      "from": "S4",
+      "to": "S1",
+      "data_description": "movie_catalog_service \u2192 discovery_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F5",
+      "from": "S4",
+      "to": "S2",
+      "data_description": "movie_catalog_service \u2192 ratings_data_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F6",
+      "from": "S4",
+      "to": "S3",
+      "data_description": "movie_catalog_service \u2192 movie_info_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    }
+  ],
+  "trust_boundaries": [
+    {
+      "id": "TB1",
+      "name": "Internet Boundary",
+      "separates": [
+        "EXT1",
+        "S2"
+      ]
+    }
+  ],
+  "partial_info_flags": {
+    "missing_trust_boundaries": false,
+    "unknown_protocols": false,
+    "unspecified_auth": true,
+    "incomplete_nodes": false
+  }
+}

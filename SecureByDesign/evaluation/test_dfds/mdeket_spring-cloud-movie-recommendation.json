@@ -1,0 +1,243 @@
+{
+  "dfd_id": "mdeket_spring-cloud-movie-recommendation",
+  "system_name": "Mdeket Spring-Cloud-Movie-Recommendation",
+  "nodes": [
+    {
+      "id": "S1",
+      "type": "process",
+      "name": "config_service",
+      "description": "configuration_server, infrastructural"
+    },
+    {
+      "id": "S2",
+      "type": "process",
+      "name": "eureka_service",
+      "description": "service_discovery, infrastructural"
+    },
+    {
+      "id": "S3",
+      "type": "process",
+      "name": "movie_service",
+      "description": "internal"
+    },
+    {
+      "id": "S4",
+      "type": "process",
+      "name": "user_service",
+      "description": "internal"
+    },
+    {
+      "id": "S5",
+      "type": "process",
+      "name": "recommendation_service",
+      "description": "internal"
+    },
+    {
+      "id": "S6",
+      "type": "process",
+      "name": "recommendation_client",
+      "description": "gateway, monitoring_dashboard, local_logging"
+    },
+    {
+      "id": "EXT1",
+      "type": "external_entity",
+      "name": "github_repository",
+      "description": "github_repository"
+    },
+    {
+      "id": "EXT2",
+      "type": "external_entity",
+      "name": "database_movie_service",
+      "description": "external_database"
+    },
+    {
+      "id": "EXT3",
+      "type": "external_entity",
+      "name": "database_user_service",
+      "description": "external_database, plaintext_credentials"
+    },
+    {
+      "id": "EXT4",
+      "type": "external_entity",
+      "name": "database_recommendation_service",
+      "description": "external_database, plaintext_credentials"
+    },
+    {
+      "id": "EXT5",
+      "type": "external_entity",
+      "name": "user",
+      "description": "user_stereotype"
+    }
+  ],
+  "edges": [
+    {
+      "id": "F1",
+      "from": "EXT1",
+      "to": "S1",
+      "data_description": "github_repository \u2192 config_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F2",
+      "from": "S1",
+      "to": "S2",
+      "data_description": "config_service \u2192 eureka_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F3",
+      "from": "S3",
+      "to": "S2",
+      "data_description": "movie_service \u2192 eureka_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F4",
+      "from": "S1",
+      "to": "S3",
+      "data_description": "config_service \u2192 movie_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F5",
+      "from": "EXT2",
+      "to": "S3",
+      "data_description": "database_movie_service \u2192 movie_service data flow",
+      "protocol": "JDBC",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F6",
+      "from": "S4",
+      "to": "S2",
+      "data_description": "user_service \u2192 eureka_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F7",
+      "from": "S1",
+      "to": "S4",
+      "data_description": "config_service \u2192 user_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F8",
+      "from": "EXT3",
+      "to": "S4",
+      "data_description": "database_user_service \u2192 user_service data flow",
+      "protocol": "JDBC",
+      "authenticated": null,
+      "encrypted": false
+    },
+    {
+      "id": "F9",
+      "from": "S5",
+      "to": "S2",
+      "data_description": "recommendation_service \u2192 eureka_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F10",
+      "from": "S1",
+      "to": "S5",
+      "data_description": "config_service \u2192 recommendation_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F11",
+      "from": "EXT4",
+      "to": "S5",
+      "data_description": "database_recommendation_service \u2192 recommendation_service data flow",
+      "protocol": "JDBC",
+      "authenticated": null,
+      "encrypted": false
+    },
+    {
+      "id": "F12",
+      "from": "S2",
+      "to": "S6",
+      "data_description": "eureka_service \u2192 recommendation_client data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F13",
+      "from": "EXT5",
+      "to": "S6",
+      "data_description": "user \u2192 recommendation_client data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F14",
+      "from": "S1",
+      "to": "S6",
+      "data_description": "config_service \u2192 recommendation_client data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F15",
+      "from": "S6",
+      "to": "S5",
+      "data_description": "recommendation_client \u2192 recommendation_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F16",
+      "from": "S6",
+      "to": "S3",
+      "data_description": "recommendation_client \u2192 movie_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F17",
+      "from": "S6",
+      "to": "S4",
+      "data_description": "recommendation_client \u2192 user_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    }
+  ],
+  "trust_boundaries": [
+    {
+      "id": "TB1",
+      "name": "Internet Boundary",
+      "separates": [
+        "EXT1",
+        "S6"
+      ]
+    }
+  ],
+  "partial_info_flags": {
+    "missing_trust_boundaries": false,
+    "unknown_protocols": false,
+    "unspecified_auth": true,
+    "incomplete_nodes": false
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "dfd_id": "shabbirdwd53_springboot-microservice",
+  "system_name": "Shabbirdwd53 Springboot-Microservice",
+  "nodes": [
+    {
+      "id": "S1",
+      "type": "process",
+      "name": "service_registry",
+      "description": "infrastructural, service_discovery"
+    },
+    {
+      "id": "S2",
+      "type": "process",
+      "name": "config_server",
+      "description": "infrastructural, configuration_server"
+    },
+    {
+      "id": "S3",
+      "type": "process",
+      "name": "zipkin_server",
+      "description": "infrastructural, tracing_server"
+    },
+    {
+      "id": "S4",
+      "type": "process",
+      "name": "department_service",
+      "description": "internal, local_logging"
+    },
+    {
+      "id": "S5",
+      "type": "process",
+      "name": "user_service",
+      "description": "internal, local_logging, load_balancer"
+    },
+    {
+      "id": "S6",
+      "type": "process",
+      "name": "hystrix_dashboard",
+      "description": "infrastructural, monitoring_dashboard, local_logging"
+    },
+    {
+      "id": "S7",
+      "type": "process",
+      "name": "api_gateway",
+      "description": "infrastructural, gateway, circuit_breaker"
+    },
+    {
+      "id": "EXT1",
+      "type": "external_entity",
+      "name": "github_repository",
+      "description": "github_repository"
+    },
+    {
+      "id": "EXT2",
+      "type": "external_entity",
+      "name": "user",
+      "description": "user_stereotype"
+    }
+  ],
+  "edges": [
+    {
+      "id": "F1",
+      "from": "EXT1",
+      "to": "S2",
+      "data_description": "github_repository \u2192 config_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F2",
+      "from": "S2",
+      "to": "S1",
+      "data_description": "config_server \u2192 service_registry data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F3",
+      "from": "S4",
+      "to": "S3",
+      "data_description": "department_service \u2192 zipkin_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F4",
+      "from": "S2",
+      "to": "S4",
+      "data_description": "config_server \u2192 department_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F5",
+      "from": "S4",
+      "to": "S1",
+      "data_description": "department_service \u2192 service_registry data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F6",
+      "from": "S5",
+      "to": "S3",
+      "data_description": "user_service \u2192 zipkin_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F7",
+      "from": "S2",
+      "to": "S5",
+      "data_description": "config_server \u2192 user_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F8",
+      "from": "S5",
+      "to": "S1",
+      "data_description": "user_service \u2192 service_registry data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F9",
+      "from": "S5",
+      "to": "S4",
+      "data_description": "user_service \u2192 department_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F10",
+      "from": "S2",
+      "to": "S6",
+      "data_description": "config_server \u2192 hystrix_dashboard data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F11",
+      "from": "S6",
+      "to": "S1",
+      "data_description": "hystrix_dashboard \u2192 service_registry data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F12",
+      "from": "EXT2",
+      "to": "S7",
+      "data_description": "user \u2192 api_gateway data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F13",
+      "from": "S1",
+      "to": "S7",
+      "data_description": "service_registry \u2192 api_gateway data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F14",
+      "from": "S2",
+      "to": "S7",
+      "data_description": "config_server \u2192 api_gateway data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F15",
+      "from": "S7",
+      "to": "S5",
+      "data_description": "api_gateway \u2192 user_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F16",
+      "from": "S7",
+      "to": "S4",
+      "data_description": "api_gateway \u2192 department_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F17",
+      "from": "S3",
+      "to": "S6",
+      "data_description": "zipkin_server \u2192 hystrix_dashboard data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    }
+  ],
+  "trust_boundaries": [
+    {
+      "id": "TB1",
+      "name": "Internet Boundary",
+      "separates": [
+        "EXT1",
+        "S7"
+      ]
+    }
+  ],
+  "partial_info_flags": {
+    "missing_trust_boundaries": false,
+    "unknown_protocols": false,
+    "unspecified_auth": true,
+    "incomplete_nodes": false
+  }
+}

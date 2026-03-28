@@ -1,0 +1,180 @@
+{
+  "dfd_id": "piomin_sample-spring-oauth2-microservices",
+  "system_name": "Piomin Sample-Spring-Oauth2-Microservices",
+  "nodes": [
+    {
+      "id": "S1",
+      "type": "process",
+      "name": "discovery_server",
+      "description": "service_discovery, infrastructural"
+    },
+    {
+      "id": "S2",
+      "type": "process",
+      "name": "gateway_server",
+      "description": "gateway, in_memory_authentication, plaintext_credentials"
+    },
+    {
+      "id": "S3",
+      "type": "process",
+      "name": "auth_server",
+      "description": "authorization_server, authentication_server, encryption"
+    },
+    {
+      "id": "S4",
+      "type": "process",
+      "name": "account_service",
+      "description": "internal, pre_authorized_endpoints, resource_server"
+    },
+    {
+      "id": "S5",
+      "type": "process",
+      "name": "customer_service",
+      "description": "internal, pre_authorized_endpoints, resource_server"
+    },
+    {
+      "id": "EXT1",
+      "type": "external_entity",
+      "name": "database_gateway_server",
+      "description": "external_database, plaintext_credentials"
+    },
+    {
+      "id": "EXT2",
+      "type": "external_entity",
+      "name": "user",
+      "description": "user_stereotype"
+    },
+    {
+      "id": "EXT3",
+      "type": "external_entity",
+      "name": "database_auth_server",
+      "description": "external_database, plaintext_credentials, tokenstore"
+    }
+  ],
+  "edges": [
+    {
+      "id": "F1",
+      "from": "S1",
+      "to": "S2",
+      "data_description": "discovery_server \u2192 gateway_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    },
+    {
+      "id": "F2",
+      "from": "EXT1",
+      "to": "S2",
+      "data_description": "database_gateway_server \u2192 gateway_server data flow",
+      "protocol": "JDBC",
+      "authenticated": null,
+      "encrypted": false
+    },
+    {
+      "id": "F3",
+      "from": "EXT2",
+      "to": "S2",
+      "data_description": "user \u2192 gateway_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    },
+    {
+      "id": "F4",
+      "from": "S3",
+      "to": "S1",
+      "data_description": "auth_server \u2192 discovery_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F5",
+      "from": "EXT3",
+      "to": "S3",
+      "data_description": "database_auth_server \u2192 auth_server data flow",
+      "protocol": "JDBC",
+      "authenticated": null,
+      "encrypted": false
+    },
+    {
+      "id": "F6",
+      "from": "S2",
+      "to": "S3",
+      "data_description": "gateway_server \u2192 auth_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    },
+    {
+      "id": "F7",
+      "from": "S4",
+      "to": "S1",
+      "data_description": "account_service \u2192 discovery_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F8",
+      "from": "S3",
+      "to": "S4",
+      "data_description": "auth_server \u2192 account_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    },
+    {
+      "id": "F9",
+      "from": "S2",
+      "to": "S4",
+      "data_description": "gateway_server \u2192 account_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F10",
+      "from": "S5",
+      "to": "S1",
+      "data_description": "customer_service \u2192 discovery_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F11",
+      "from": "S5",
+      "to": "S4",
+      "data_description": "customer_service \u2192 account_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    },
+    {
+      "id": "F12",
+      "from": "S3",
+      "to": "S5",
+      "data_description": "auth_server \u2192 customer_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    }
+  ],
+  "trust_boundaries": [
+    {
+      "id": "TB1",
+      "name": "Internet Boundary",
+      "separates": [
+        "EXT1",
+        "S2"
+      ]
+    }
+  ],
+  "partial_info_flags": {
+    "missing_trust_boundaries": false,
+    "unknown_protocols": false,
+    "unspecified_auth": true,
+    "incomplete_nodes": false
+  }
+}

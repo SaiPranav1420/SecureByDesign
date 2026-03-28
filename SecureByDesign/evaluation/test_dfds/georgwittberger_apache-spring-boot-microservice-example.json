@@ -1,0 +1,99 @@
+{
+  "dfd_id": "georgwittberger_apache-spring-boot-microservice-example",
+  "system_name": "Georgwittberger Apache-Spring-Boot-Microservice-Example",
+  "nodes": [
+    {
+      "id": "S1",
+      "type": "process",
+      "name": "apache_server",
+      "description": "web_server, infrastructural, entrypoint"
+    },
+    {
+      "id": "S2",
+      "type": "process",
+      "name": "content_service",
+      "description": "internal"
+    },
+    {
+      "id": "S3",
+      "type": "process",
+      "name": "product_service",
+      "description": "internal"
+    },
+    {
+      "id": "S4",
+      "type": "process",
+      "name": "cart_service",
+      "description": "internal"
+    },
+    {
+      "id": "EXT1",
+      "type": "external_entity",
+      "name": "user",
+      "description": "user_stereotype"
+    }
+  ],
+  "edges": [
+    {
+      "id": "F1",
+      "from": "EXT1",
+      "to": "S1",
+      "data_description": "user \u2192 apache_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F2",
+      "from": "S4",
+      "to": "S3",
+      "data_description": "cart_service \u2192 product_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F3",
+      "from": "S1",
+      "to": "S4",
+      "data_description": "apache_server \u2192 cart_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F4",
+      "from": "S1",
+      "to": "S3",
+      "data_description": "apache_server \u2192 product_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F5",
+      "from": "S1",
+      "to": "S2",
+      "data_description": "apache_server \u2192 content_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    }
+  ],
+  "trust_boundaries": [
+    {
+      "id": "TB1",
+      "name": "Internet Boundary",
+      "separates": [
+        "EXT1",
+        "S1"
+      ]
+    }
+  ],
+  "partial_info_flags": {
+    "missing_trust_boundaries": false,
+    "unknown_protocols": false,
+    "unspecified_auth": true,
+    "incomplete_nodes": false
+  }
+}

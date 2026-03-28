@@ -1,0 +1,504 @@
+{
+  "dfd_id": "callistaenterprise_blog-microservices",
+  "system_name": "Callistaenterprise Blog-Microservices",
+  "nodes": [
+    {
+      "id": "S1",
+      "type": "process",
+      "name": "elasticsearch",
+      "description": "infrastructural, search_engine"
+    },
+    {
+      "id": "S2",
+      "type": "process",
+      "name": "kibana",
+      "description": "infrastructural, monitoring_dashboard"
+    },
+    {
+      "id": "S3",
+      "type": "process",
+      "name": "logstash",
+      "description": "infrastructural, logging_server"
+    },
+    {
+      "id": "S4",
+      "type": "process",
+      "name": "rabbitmq",
+      "description": "infrastructural, message_broker"
+    },
+    {
+      "id": "S5",
+      "type": "process",
+      "name": "discovery_server",
+      "description": "infrastructural, service_discovery, plaintext_credentials"
+    },
+    {
+      "id": "S6",
+      "type": "process",
+      "name": "config_server",
+      "description": "infrastructural, configuration_server, local_logging"
+    },
+    {
+      "id": "S7",
+      "type": "process",
+      "name": "auth_server",
+      "description": "infrastructural, authorization_server, resource_server"
+    },
+    {
+      "id": "S8",
+      "type": "process",
+      "name": "monitor_dashboard",
+      "description": "infrastructural, monitoring_dashboard, local_logging"
+    },
+    {
+      "id": "S9",
+      "type": "process",
+      "name": "turbine_server",
+      "description": "infrastructural, monitoring_server, local_logging"
+    },
+    {
+      "id": "S10",
+      "type": "process",
+      "name": "zipkin_server",
+      "description": "infrastructural, tracing_server"
+    },
+    {
+      "id": "S11",
+      "type": "process",
+      "name": "product_service",
+      "description": "internal, local_logging"
+    },
+    {
+      "id": "S12",
+      "type": "process",
+      "name": "recommendation_service",
+      "description": "internal, local_logging"
+    },
+    {
+      "id": "S13",
+      "type": "process",
+      "name": "review_service",
+      "description": "internal, local_logging"
+    },
+    {
+      "id": "S14",
+      "type": "process",
+      "name": "composite_service",
+      "description": "internal, local_logging, load_balancer"
+    },
+    {
+      "id": "S15",
+      "type": "process",
+      "name": "edge_server",
+      "description": "infrastructural, gateway, resource_server"
+    },
+    {
+      "id": "EXT1",
+      "type": "external_entity",
+      "name": "github_repository",
+      "description": "github_repository"
+    },
+    {
+      "id": "EXT2",
+      "type": "external_entity",
+      "name": "user",
+      "description": "user_stereotype"
+    }
+  ],
+  "edges": [
+    {
+      "id": "F1",
+      "from": "S1",
+      "to": "S2",
+      "data_description": "elasticsearch \u2192 kibana data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F2",
+      "from": "S3",
+      "to": "S1",
+      "data_description": "logstash \u2192 elasticsearch data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F3",
+      "from": "EXT1",
+      "to": "S6",
+      "data_description": "github_repository \u2192 config_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F4",
+      "from": "S6",
+      "to": "S5",
+      "data_description": "config_server \u2192 discovery_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F5",
+      "from": "S6",
+      "to": "S4",
+      "data_description": "config_server \u2192 rabbitmq data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F6",
+      "from": "S6",
+      "to": "S7",
+      "data_description": "config_server \u2192 auth_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    },
+    {
+      "id": "F7",
+      "from": "S6",
+      "to": "S8",
+      "data_description": "config_server \u2192 monitor_dashboard data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F8",
+      "from": "S8",
+      "to": "S5",
+      "data_description": "monitor_dashboard \u2192 discovery_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F9",
+      "from": "S4",
+      "to": "S9",
+      "data_description": "rabbitmq \u2192 turbine_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F10",
+      "from": "S9",
+      "to": "S5",
+      "data_description": "turbine_server \u2192 discovery_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F11",
+      "from": "S6",
+      "to": "S9",
+      "data_description": "config_server \u2192 turbine_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F12",
+      "from": "S9",
+      "to": "S8",
+      "data_description": "turbine_server \u2192 monitor_dashboard data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F13",
+      "from": "S4",
+      "to": "S10",
+      "data_description": "rabbitmq \u2192 zipkin_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F14",
+      "from": "S6",
+      "to": "S11",
+      "data_description": "config_server \u2192 product_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F15",
+      "from": "S11",
+      "to": "S5",
+      "data_description": "product_service \u2192 discovery_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F16",
+      "from": "S6",
+      "to": "S12",
+      "data_description": "config_server \u2192 recommendation_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F17",
+      "from": "S12",
+      "to": "S5",
+      "data_description": "recommendation_service \u2192 discovery_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F18",
+      "from": "S6",
+      "to": "S13",
+      "data_description": "config_server \u2192 review_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F19",
+      "from": "S13",
+      "to": "S5",
+      "data_description": "review_service \u2192 discovery_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F20",
+      "from": "S6",
+      "to": "S14",
+      "data_description": "config_server \u2192 composite_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    },
+    {
+      "id": "F21",
+      "from": "S7",
+      "to": "S14",
+      "data_description": "auth_server \u2192 composite_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    },
+    {
+      "id": "F22",
+      "from": "S14",
+      "to": "S5",
+      "data_description": "composite_service \u2192 discovery_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F23",
+      "from": "S14",
+      "to": "S4",
+      "data_description": "composite_service \u2192 rabbitmq data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F24",
+      "from": "S14",
+      "to": "S11",
+      "data_description": "composite_service \u2192 product_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F25",
+      "from": "S14",
+      "to": "S12",
+      "data_description": "composite_service \u2192 recommendation_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F26",
+      "from": "S14",
+      "to": "S13",
+      "data_description": "composite_service \u2192 review_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F27",
+      "from": "EXT2",
+      "to": "S15",
+      "data_description": "user \u2192 edge_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    },
+    {
+      "id": "F28",
+      "from": "EXT2",
+      "to": "S7",
+      "data_description": "user \u2192 auth_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    },
+    {
+      "id": "F29",
+      "from": "S15",
+      "to": "S14",
+      "data_description": "edge_server \u2192 composite_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    },
+    {
+      "id": "F30",
+      "from": "S5",
+      "to": "S15",
+      "data_description": "discovery_server \u2192 edge_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    },
+    {
+      "id": "F31",
+      "from": "S6",
+      "to": "S15",
+      "data_description": "config_server \u2192 edge_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    },
+    {
+      "id": "F32",
+      "from": "S15",
+      "to": "S7",
+      "data_description": "edge_server \u2192 auth_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": true,
+      "encrypted": null
+    },
+    {
+      "id": "F33",
+      "from": "S5",
+      "to": "S3",
+      "data_description": "discovery_server \u2192 logstash data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F34",
+      "from": "S6",
+      "to": "S3",
+      "data_description": "config_server \u2192 logstash data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F35",
+      "from": "S7",
+      "to": "S3",
+      "data_description": "auth_server \u2192 logstash data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F36",
+      "from": "S11",
+      "to": "S3",
+      "data_description": "product_service \u2192 logstash data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F37",
+      "from": "S12",
+      "to": "S3",
+      "data_description": "recommendation_service \u2192 logstash data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F38",
+      "from": "S13",
+      "to": "S3",
+      "data_description": "review_service \u2192 logstash data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F39",
+      "from": "S14",
+      "to": "S3",
+      "data_description": "composite_service \u2192 logstash data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F40",
+      "from": "S8",
+      "to": "S3",
+      "data_description": "monitor_dashboard \u2192 logstash data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F41",
+      "from": "S15",
+      "to": "S3",
+      "data_description": "edge_server \u2192 logstash data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F42",
+      "from": "S10",
+      "to": "S3",
+      "data_description": "zipkin_server \u2192 logstash data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    }
+  ],
+  "trust_boundaries": [
+    {
+      "id": "TB1",
+      "name": "Internet Boundary",
+      "separates": [
+        "EXT1",
+        "S7"
+      ]
+    }
+  ],
+  "partial_info_flags": {
+    "missing_trust_boundaries": false,
+    "unknown_protocols": false,
+    "unspecified_auth": true,
+    "incomplete_nodes": false
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "anilallewar_microservices-basics-spring-boot": {
+    "system_name": "Anilallewar Microservices-Basics-Spring-Boot",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Information Disclosure",
+      "Spoofing",
+      "Tampering"
+    ],
+    "num_nodes": 12,
+    "num_edges": 29,
+    "num_expected_threats": 5,
+    "source": "microSecEnD/anilallewar_microservices-basics-spring-boot"
+  },
+  "apssouza22_java-microservice": {
+    "system_name": "Apssouza22 Java-Microservice",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Repudiation",
+      "Spoofing",
+      "Tampering"
+    ],
+    "num_nodes": 15,
+    "num_edges": 34,
+    "num_expected_threats": 5,
+    "source": "microSecEnD/apssouza22_java-microservice"
+  },
+  "callistaenterprise_blog-microservices": {
+    "system_name": "Callistaenterprise Blog-Microservices",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Information Disclosure",
+      "Spoofing",
+      "Tampering"
+    ],
+    "num_nodes": 17,
+    "num_edges": 42,
+    "num_expected_threats": 5,
+    "source": "microSecEnD/callistaenterprise_blog-microservices"
+  },
+  "ewolff_microservice": {
+    "system_name": "Ewolff Microservice",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Repudiation",
+      "Spoofing"
+    ],
+    "num_nodes": 7,
+    "num_edges": 12,
+    "num_expected_threats": 4,
+    "source": "microSecEnD/ewolff_microservice"
+  },
+  "ewolff_microservice-kafka": {
+    "system_name": "Ewolff Microservice-Kafka",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Information Disclosure",
+      "Repudiation",
+      "Spoofing",
+      "Tampering"
+    ],
+    "num_nodes": 8,
+    "num_edges": 11,
+    "num_expected_threats": 6,
+    "source": "microSecEnD/ewolff_microservice-kafka"
+  },
+  "fernandoabcampos_spring-netflix-oss-microservices": {
+    "system_name": "Fernandoabcampos Spring-Netflix-Oss-Microservices",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Repudiation",
+      "Spoofing"
+    ],
+    "num_nodes": 11,
+    "num_edges": 23,
+    "num_expected_threats": 4,
+    "source": "microSecEnD/fernandoabcampos_spring-netflix-oss-microservices"
+  },
+  "georgwittberger_apache-spring-boot-microservice-example": {
+    "system_name": "Georgwittberger Apache-Spring-Boot-Microservice-Example",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Repudiation",
+      "Spoofing"
+    ],
+    "num_nodes": 5,
+    "num_edges": 5,
+    "num_expected_threats": 4,
+    "source": "microSecEnD/georgwittberger_apache-spring-boot-microservice-example"
+  },
+  "jferrater_tap-and-eat-microservices": {
+    "system_name": "Jferrater Tap-And-Eat-Microservices",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Repudiation",
+      "Spoofing"
+    ],
+    "num_nodes": 9,
+    "num_edges": 16,
+    "num_expected_threats": 4,
+    "source": "microSecEnD/jferrater_tap-and-eat-microservices"
+  },
+  "koushikkothagal_spring-boot-microservices-workshop": {
+    "system_name": "Koushikkothagal Spring-Boot-Microservices-Workshop",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Repudiation",
+      "Spoofing"
+    ],
+    "num_nodes": 5,
+    "num_edges": 6,
+    "num_expected_threats": 4,
+    "source": "microSecEnD/koushikkothagal_spring-boot-microservices-workshop"
+  },
+  "mdeket_spring-cloud-movie-recommendation": {
+    "system_name": "Mdeket Spring-Cloud-Movie-Recommendation",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Information Disclosure",
+      "Repudiation",
+      "Spoofing",
+      "Tampering"
+    ],
+    "num_nodes": 11,
+    "num_edges": 17,
+    "num_expected_threats": 6,
+    "source": "microSecEnD/mdeket_spring-cloud-movie-recommendation"
+  },
+  "mudigal-technologies_microservices-sample": {
+    "system_name": "Mudigal-Technologies Microservices-Sample",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Information Disclosure",
+      "Spoofing",
+      "Tampering"
+    ],
+    "num_nodes": 15,
+    "num_edges": 33,
+    "num_expected_threats": 5,
+    "source": "microSecEnD/mudigal-technologies_microservices-sample"
+  },
+  "piomin_sample-spring-oauth2-microservices": {
+    "system_name": "Piomin Sample-Spring-Oauth2-Microservices",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Information Disclosure",
+      "Repudiation",
+      "Spoofing",
+      "Tampering"
+    ],
+    "num_nodes": 8,
+    "num_edges": 12,
+    "num_expected_threats": 6,
+    "source": "microSecEnD/piomin_sample-spring-oauth2-microservices"
+  },
+  "rohitghatol_spring-boot-microservices": {
+    "system_name": "Rohitghatol Spring-Boot-Microservices",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Information Disclosure",
+      "Repudiation",
+      "Spoofing",
+      "Tampering"
+    ],
+    "num_nodes": 11,
+    "num_edges": 26,
+    "num_expected_threats": 6,
+    "source": "microSecEnD/rohitghatol_spring-boot-microservices"
+  },
+  "shabbirdwd53_springboot-microservice": {
+    "system_name": "Shabbirdwd53 Springboot-Microservice",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Spoofing"
+    ],
+    "num_nodes": 9,
+    "num_edges": 17,
+    "num_expected_threats": 3,
+    "source": "microSecEnD/shabbirdwd53_springboot-microservice"
+  },
+  "spring-petclinic_spring-petclinic-microservices": {
+    "system_name": "Spring-Petclinic Spring-Petclinic-Microservices",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Repudiation",
+      "Spoofing"
+    ],
+    "num_nodes": 12,
+    "num_edges": 27,
+    "num_expected_threats": 4,
+    "source": "microSecEnD/spring-petclinic_spring-petclinic-microservices"
+  },
+  "sqshq_piggymetrics": {
+    "system_name": "Sqshq Piggymetrics",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Information Disclosure",
+      "Spoofing",
+      "Tampering"
+    ],
+    "num_nodes": 17,
+    "num_edges": 36,
+    "num_expected_threats": 5,
+    "source": "microSecEnD/sqshq_piggymetrics"
+  },
+  "yidongnan_spring-cloud-netflix-example": {
+    "system_name": "Yidongnan Spring-Cloud-Netflix-Example",
+    "expected_stride_categories": [
+      "Denial of Service",
+      "Elevation of Privilege",
+      "Repudiation",
+      "Spoofing",
+      "Tampering"
+    ],
+    "num_nodes": 10,
+    "num_edges": 28,
+    "num_expected_threats": 5,
+    "source": "microSecEnD/yidongnan_spring-cloud-netflix-example"
+  }
+}

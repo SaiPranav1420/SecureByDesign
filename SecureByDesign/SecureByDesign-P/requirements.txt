@@ -1,0 +1,14 @@
+# SecureByDesign — Requirements
+# Install with: pip install -r requirements.txt
+
+# Core LLM client — Groq (free tier, llama-3.3-70b-versatile)
+# Get free API key from: https://console.groq.com/keys
+groq>=0.11.0
+
+# Evaluation & data
+scikit-learn>=1.3.0
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Utilities
+python-dateutil>=2.8.0

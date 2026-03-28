@@ -1,0 +1,297 @@
+{
+  "dfd_id": "fernandoabcampos_spring-netflix-oss-microservices",
+  "system_name": "Fernandoabcampos Spring-Netflix-Oss-Microservices",
+  "nodes": [
+    {
+      "id": "S1",
+      "type": "process",
+      "name": "config_server",
+      "description": "configuration_server, infrastructural"
+    },
+    {
+      "id": "S2",
+      "type": "process",
+      "name": "discovery_service",
+      "description": "service_discovery, infrastructural"
+    },
+    {
+      "id": "S3",
+      "type": "process",
+      "name": "rabbitmq",
+      "description": "message_broker, infrastructural"
+    },
+    {
+      "id": "S4",
+      "type": "process",
+      "name": "monitor_dashboard",
+      "description": "monitoring_dashboard, infrastructural"
+    },
+    {
+      "id": "S5",
+      "type": "process",
+      "name": "turbine",
+      "description": "monitoring_server, infrastructural"
+    },
+    {
+      "id": "S6",
+      "type": "process",
+      "name": "statement_service",
+      "description": "internal"
+    },
+    {
+      "id": "S7",
+      "type": "process",
+      "name": "card_service",
+      "description": "internal"
+    },
+    {
+      "id": "S8",
+      "type": "process",
+      "name": "card_statement_composite",
+      "description": "internal, circuit_breaker"
+    },
+    {
+      "id": "S9",
+      "type": "process",
+      "name": "edge_server",
+      "description": "gateway, infrastructural, load_balancer"
+    },
+    {
+      "id": "EXT1",
+      "type": "external_entity",
+      "name": "github_repository",
+      "description": "github_repository"
+    },
+    {
+      "id": "EXT2",
+      "type": "external_entity",
+      "name": "user",
+      "description": "user_stereotype"
+    }
+  ],
+  "edges": [
+    {
+      "id": "F1",
+      "from": "EXT1",
+      "to": "S1",
+      "data_description": "github_repository \u2192 config_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F2",
+      "from": "S1",
+      "to": "S2",
+      "data_description": "config_server \u2192 discovery_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F3",
+      "from": "S4",
+      "to": "S2",
+      "data_description": "monitor_dashboard \u2192 discovery_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F4",
+      "from": "S1",
+      "to": "S4",
+      "data_description": "config_server \u2192 monitor_dashboard data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F5",
+      "from": "S5",
+      "to": "S2",
+      "data_description": "turbine \u2192 discovery_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F6",
+      "from": "S3",
+      "to": "S5",
+      "data_description": "rabbitmq \u2192 turbine data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F7",
+      "from": "S1",
+      "to": "S5",
+      "data_description": "config_server \u2192 turbine data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F8",
+      "from": "S5",
+      "to": "S4",
+      "data_description": "turbine \u2192 monitor_dashboard data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F9",
+      "from": "S6",
+      "to": "S2",
+      "data_description": "statement_service \u2192 discovery_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F10",
+      "from": "S1",
+      "to": "S6",
+      "data_description": "config_server \u2192 statement_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F11",
+      "from": "S7",
+      "to": "S2",
+      "data_description": "card_service \u2192 discovery_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F12",
+      "from": "S1",
+      "to": "S7",
+      "data_description": "config_server \u2192 card_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F13",
+      "from": "S8",
+      "to": "S2",
+      "data_description": "card_statement_composite \u2192 discovery_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F14",
+      "from": "S8",
+      "to": "S7",
+      "data_description": "card_statement_composite \u2192 card_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F15",
+      "from": "S8",
+      "to": "S6",
+      "data_description": "card_statement_composite \u2192 statement_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F16",
+      "from": "S1",
+      "to": "S8",
+      "data_description": "config_server \u2192 card_statement_composite data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F17",
+      "from": "S8",
+      "to": "S3",
+      "data_description": "card_statement_composite \u2192 rabbitmq data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F18",
+      "from": "S2",
+      "to": "S9",
+      "data_description": "discovery_service \u2192 edge_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F19",
+      "from": "EXT2",
+      "to": "S9",
+      "data_description": "user \u2192 edge_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F20",
+      "from": "S1",
+      "to": "S9",
+      "data_description": "config_server \u2192 edge_server data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F21",
+      "from": "S9",
+      "to": "S7",
+      "data_description": "edge_server \u2192 card_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F22",
+      "from": "S9",
+      "to": "S6",
+      "data_description": "edge_server \u2192 statement_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F23",
+      "from": "S9",
+      "to": "S8",
+      "data_description": "edge_server \u2192 card_statement_composite data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    }
+  ],
+  "trust_boundaries": [
+    {
+      "id": "TB1",
+      "name": "Internet Boundary",
+      "separates": [
+        "EXT1",
+        "S9"
+      ]
+    }
+  ],
+  "partial_info_flags": {
+    "missing_trust_boundaries": false,
+    "unknown_protocols": false,
+    "unspecified_auth": true,
+    "incomplete_nodes": false
+  }
+}

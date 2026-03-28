@@ -1,0 +1,222 @@
+{
+  "dfd_id": "jferrater_tap-and-eat-microservices",
+  "system_name": "Jferrater Tap-And-Eat-Microservices",
+  "nodes": [
+    {
+      "id": "S1",
+      "type": "process",
+      "name": "discovery_service",
+      "description": "service_discovery, infrastructural"
+    },
+    {
+      "id": "S2",
+      "type": "process",
+      "name": "config_service",
+      "description": "configuration_server, infrastructural"
+    },
+    {
+      "id": "S3",
+      "type": "process",
+      "name": "account_service",
+      "description": "internal, entrypoint"
+    },
+    {
+      "id": "S4",
+      "type": "process",
+      "name": "customer_service",
+      "description": "internal, entrypoint"
+    },
+    {
+      "id": "S5",
+      "type": "process",
+      "name": "store_service",
+      "description": "internal, entrypoint"
+    },
+    {
+      "id": "S6",
+      "type": "process",
+      "name": "item_service",
+      "description": "internal, entrypoint"
+    },
+    {
+      "id": "S7",
+      "type": "process",
+      "name": "price_service",
+      "description": "internal, entrypoint"
+    },
+    {
+      "id": "S8",
+      "type": "process",
+      "name": "foodtray_service",
+      "description": "infrastructural, monitoring_dashboard, circuit_breaker"
+    },
+    {
+      "id": "EXT1",
+      "type": "external_entity",
+      "name": "github_repository",
+      "description": "github_repository"
+    }
+  ],
+  "edges": [
+    {
+      "id": "F1",
+      "from": "EXT1",
+      "to": "S2",
+      "data_description": "github_repository \u2192 config_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F2",
+      "from": "S2",
+      "to": "S1",
+      "data_description": "config_service \u2192 discovery_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F3",
+      "from": "S2",
+      "to": "S3",
+      "data_description": "config_service \u2192 account_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F4",
+      "from": "S3",
+      "to": "S1",
+      "data_description": "account_service \u2192 discovery_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F5",
+      "from": "S2",
+      "to": "S4",
+      "data_description": "config_service \u2192 customer_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F6",
+      "from": "S4",
+      "to": "S1",
+      "data_description": "customer_service \u2192 discovery_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F7",
+      "from": "S2",
+      "to": "S5",
+      "data_description": "config_service \u2192 store_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F8",
+      "from": "S5",
+      "to": "S1",
+      "data_description": "store_service \u2192 discovery_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F9",
+      "from": "S2",
+      "to": "S6",
+      "data_description": "config_service \u2192 item_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F10",
+      "from": "S6",
+      "to": "S1",
+      "data_description": "item_service \u2192 discovery_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F11",
+      "from": "S2",
+      "to": "S7",
+      "data_description": "config_service \u2192 price_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F12",
+      "from": "S7",
+      "to": "S1",
+      "data_description": "price_service \u2192 discovery_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F13",
+      "from": "S2",
+      "to": "S8",
+      "data_description": "config_service \u2192 foodtray_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F14",
+      "from": "S8",
+      "to": "S1",
+      "data_description": "foodtray_service \u2192 discovery_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F15",
+      "from": "S8",
+      "to": "S6",
+      "data_description": "foodtray_service \u2192 item_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F16",
+      "from": "S8",
+      "to": "S7",
+      "data_description": "foodtray_service \u2192 price_service data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    }
+  ],
+  "trust_boundaries": [
+    {
+      "id": "TB1",
+      "name": "Internet Boundary",
+      "separates": [
+        "EXT1",
+        "S3"
+      ]
+    }
+  ],
+  "partial_info_flags": {
+    "missing_trust_boundaries": false,
+    "unknown_protocols": false,
+    "unspecified_auth": true,
+    "incomplete_nodes": false
+  }
+}

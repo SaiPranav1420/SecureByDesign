@@ -1,0 +1,6 @@
+Scenario,Threats,High,Medium,Low,Completeness,Partial
+1-Full DFD (100%),3,0,1,2,100%,False
+2-No Trust Boundaries,3,0,1,2,75%,True
+3-No Auth Info,4,0,3,1,75%,True
+4-No Encryption Info,4,0,3,1,75%,True
+5-Minimal (No TB+Auth+Enc+Protocol),4,0,0,4,12%,True

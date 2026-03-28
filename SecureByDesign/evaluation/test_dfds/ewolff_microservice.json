@@ -1,0 +1,174 @@
+{
+  "dfd_id": "ewolff_microservice",
+  "system_name": "Ewolff Microservice",
+  "nodes": [
+    {
+      "id": "S1",
+      "type": "process",
+      "name": "eureka",
+      "description": "service_discovery, infrastructural"
+    },
+    {
+      "id": "S2",
+      "type": "process",
+      "name": "zuul",
+      "description": "gateway, load_balancer, infrastructural"
+    },
+    {
+      "id": "S3",
+      "type": "process",
+      "name": "turbine",
+      "description": "monitoring_server, monitoring_dashboard, infrastructural"
+    },
+    {
+      "id": "S4",
+      "type": "process",
+      "name": "catalog",
+      "description": "internal"
+    },
+    {
+      "id": "S5",
+      "type": "process",
+      "name": "customer",
+      "description": "internal"
+    },
+    {
+      "id": "S6",
+      "type": "process",
+      "name": "order",
+      "description": "internal, load_balancer, circuit_breaker"
+    },
+    {
+      "id": "EXT1",
+      "type": "external_entity",
+      "name": "user",
+      "description": "user_stereotype"
+    }
+  ],
+  "edges": [
+    {
+      "id": "F1",
+      "from": "S1",
+      "to": "S2",
+      "data_description": "eureka \u2192 zuul data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F2",
+      "from": "EXT1",
+      "to": "S2",
+      "data_description": "user \u2192 zuul data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F3",
+      "from": "S3",
+      "to": "S1",
+      "data_description": "turbine \u2192 eureka data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F4",
+      "from": "S4",
+      "to": "S1",
+      "data_description": "catalog \u2192 eureka data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F5",
+      "from": "S5",
+      "to": "S1",
+      "data_description": "customer \u2192 eureka data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F6",
+      "from": "S6",
+      "to": "S1",
+      "data_description": "order \u2192 eureka data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F7",
+      "from": "S6",
+      "to": "S4",
+      "data_description": "order \u2192 catalog data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F8",
+      "from": "S6",
+      "to": "S5",
+      "data_description": "order \u2192 customer data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F9",
+      "from": "S6",
+      "to": "S3",
+      "data_description": "order \u2192 turbine data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F10",
+      "from": "S2",
+      "to": "S5",
+      "data_description": "zuul \u2192 customer data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F11",
+      "from": "S2",
+      "to": "S4",
+      "data_description": "zuul \u2192 catalog data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    },
+    {
+      "id": "F12",
+      "from": "S2",
+      "to": "S6",
+      "data_description": "zuul \u2192 order data flow",
+      "protocol": "HTTP/REST",
+      "authenticated": null,
+      "encrypted": null
+    }
+  ],
+  "trust_boundaries": [
+    {
+      "id": "TB1",
+      "name": "Internet Boundary",
+      "separates": [
+        "EXT1",
+        "S2"
+      ]
+    }
+  ],
+  "partial_info_flags": {
+    "missing_trust_boundaries": false,
+    "unknown_protocols": false,
+    "unspecified_auth": true,
+    "incomplete_nodes": false
+  }
+}
