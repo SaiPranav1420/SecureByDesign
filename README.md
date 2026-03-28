@@ -2,7 +2,7 @@
 
 **SecureByDesign** is an end-to-end AI pipeline that automates STRIDE threat modeling. It parses system architecture Data Flow Diagrams (DFDs) and uses Large Language Models (LLMs) to automatically detect and infer potential security threats. 
 
-This mini-project was built to address the time-consuming and manual nature of traditional threat modeling by bringing cutting-edge LLMs directly into the architecture design phase.
+This is a mini-project that was built to address the time-consuming and manual nature of traditional threat modeling by bringing cutting-edge LLMs directly into the architecture design phase.
 
 ## Features
 - **Intelligent Parsing:** Parses unstructured DFDs into structured security contexts.
